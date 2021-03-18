@@ -7,38 +7,56 @@ void setup(){
   
   int pntx=10;
   int pnty=80;
-  int ancho=1;
-  int altura=6;
+  int anchoX=1;
+  int alturaX=6;
+  int anchoY=1;
+  int alturaY=6;
   
-  print(PI);
   
-  for(int d = 0; d < 3; d++){
-      for(int x = 1; x < 30; x+=2){
-    arc(pntx,pnty,ancho,altura,PI/2, 3*PI/2);
-    pntx+=6;
-    ancho++;
-    altura+=8;
-    
-  }
-  arc(pntx-4,pnty,0,altura-8,PI/2, 3*PI/2);
-  
-  altura-=8;
-  pntx-=2;
-  //arc(pntx-2,pnty,ancho,altura,-(PI/2), +(PI/2));
-  //arc(pntx,pnty,ancho,altura,-(PI/2), +(PI/2));
-  
+//  print(PI);
+  for(int i = 0; i < 3; i++){
+    int yHorizontal=24;
   for(int x = 1; x < 30; x+=2){
-    arc(pntx,pnty,ancho,altura,-(PI/2), +(PI/2));
-    pntx+=6; //+=6 pero se pierden algunas lineas
-    ancho--;
-    altura-=8;
+    arc(pntx,pnty,anchoX,alturaX,PI/2, 3*PI/2);
+    pntx+=4;
+    anchoX++;
+    alturaX+=8;
+  }
+  
+  arc(pntx-4,pnty,0,alturaX-8,PI/2, 3*PI/2);
+  alturaX-=8;
+  pntx-=4;
+  
+  
+  
+  for(int x =1; x < 30; x+=2){
+    arc(pntx,yHorizontal,anchoY,alturaY,-PI,0);
+    yHorizontal+=4;
+    anchoY+=8;
+    alturaY++;
+  
+  
+  }
+  
+  arc(pntx,yHorizontal-4,anchoY-8,0,-PI,0);
+  yHorizontal-=4;
+  anchoY-=8;
+  
+  for(int x =1; x < 30; x+=2){
+    arc(pntx,yHorizontal,anchoY,alturaY,0,PI);
+    yHorizontal+=4;
+    anchoY-=8;
+    alturaY--;
+  
+  
+  }
+  
+ for(int x = 1; x < 30; x+=2){
+    arc(pntx,pnty,anchoX,alturaX,-(PI/2), +(PI/2));
+    pntx+=4; //+=6 pero se pierden algunas lineas
+    anchoX--;
+    alturaX-=8;
     
   }
-}
-  
-
-  
-  
-  //arc(50,pnty,25,150,-(PI/2), +(PI/2));
-  
+  }
 }
