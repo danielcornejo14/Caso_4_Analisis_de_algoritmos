@@ -17,8 +17,6 @@ void crearImagen(int pAltura, int pAnchura, vector<punto> &pVector);
 
 int main(){
 
-    //sepa diosito como vamos a hacer esto
-
     vector<punto> vectorFigura;
     crearImagen(5, 5, vectorFigura);
 
