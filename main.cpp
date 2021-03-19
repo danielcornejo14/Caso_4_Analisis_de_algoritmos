@@ -61,13 +61,14 @@ void crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
 
     int pntx=10;
     int pnty=80;
-    int anchoX=1;
-    int alturaX=6;
-    int anchoY=1;
-    int alturaY=6;
-
+    
     for(int i = 0; i < 3; i++){
         int yHorizontal=24;
+        int anchoX=1;
+        int alturaX=6;
+        int anchoY=1;
+        int alturaY=6;
+
     
         for(int x = 1; x < 30; x+=2){
             pVector.push_back(arco(pntx,pnty,anchoX,alturaX,pi/2, 3*pi/2));
