@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 
 using namespace std;
@@ -22,21 +23,35 @@ public:
     }
 };
 
+void crearImagen(int pAltura, int pAnchura, vector<arco> &pVector);
+
 int main(){
 
     vector<arco> vectorFigura;
     crearImagen(5, 5, vectorFigura);
 
-    for(auto pun : vectorFigura){
-        cout << "arc(" << pun.x << ", " << pun.y << ", " << pun.ancho << ", " << pun.alto << ", "
-        << pun.inicio << ", " << pun.final << ")" << endl;
+    ofstream myfile ("caso4.txt");
+    if (myfile.is_open())
+    {
+        for(auto pun : vectorFigura){
+            myfile <<  pun.x << ";" << pun.y << ";" << pun.ancho << ";" << pun.alto << ";"
+            << pun.inicio << ";" << pun.final << "\n";
+        }
+        myfile.close();
     }
+    else cout << "Unable to open file";
+
+    // for(auto pun : vectorFigura){
+    //     cout <<  pun.x << ";" << pun.y << ";" << pun.ancho << ";" << pun.alto << ";"
+    //     << pun.inicio << ";" << pun.final << endl;
+    // }
 
     return 0;
 }
 
 void crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
     double pi = 3.1415927;
+
     int size;
     if (pAltura < pAnchura){
         size = pAltura;
@@ -46,51 +61,79 @@ void crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
 
     int pntx=10;
     int pnty=80;
-    int ancho=1;
-    int altura=6;
+    int anchoX=1;
+    int alturaX=6;
+    int anchoY=1;
+    int alturaY=6;
 
-    for(int x = 1; x < 30; x+=2){
-        pVector.push_back(arco(pntx,pnty,ancho,altura, pi/2, 3*pi/2));
-        pntx+=6;
-        ancho++;
-        altura+=8;
-        
-    }
-    pVector.push_back(arco(pntx-4,pnty,0,altura-8,pi/2, 3*pi/2));
+    for(int i = 0; i < 3; i++){
+        int yHorizontal=24;
     
-    altura-=8;
-    pVector.push_back(arco(pntx-2,pnty,ancho,altura,-(pi/2), + (pi/2)));
-    pVector.push_back(arco(pntx,pnty,ancho,altura,-(pi/2), +(pi/2)));
-    
-    for(int x = 1; x < 30; x+=2){
-        pVector.push_back(arco(pntx,pnty,ancho,altura,-(pi/2), +(pi/2)));
-        pntx+=9; //+=6 pero se pierden algunas lineas
-        ancho--;
-        altura-=8;
+        for(int x = 1; x < 30; x+=2){
+            pVector.push_back(arco(pntx,pnty,anchoX,alturaX,pi/2, 3*pi/2));
+            pntx+=4;
+            anchoX++;
+            alturaX+=8;
+        }
         
+        pVector.push_back(arco(pntx-4,pnty,0,alturaX-8,pi/2, 3*pi/2));
+        alturaX-=8;
+        pntx-=4;
+        
+        
+        
+        for(int x =1; x < 30; x+=2){
+            pVector.push_back(arco(pntx,yHorizontal,anchoY,alturaY,-pi,0));
+            yHorizontal+=4;
+            anchoY+=8;
+            alturaY++;
+        
+        
+        }
+        
+        pVector.push_back(arco(pntx,yHorizontal-4,anchoY-8,0,-pi,0));
+        yHorizontal-=4;
+        anchoY-=8;
+        
+        for(int x =1; x < 30; x+=2){
+            pVector.push_back(arco(pntx,yHorizontal,anchoY,alturaY,0,pi));
+            yHorizontal+=4;
+            anchoY-=8;
+            alturaY--;
+        }
+        
+        for(int x = 1; x < 30; x+=2){
+            pVector.push_back(arco(pntx,pnty,anchoX,alturaX,-(pi/2), +(pi/2)));
+            pntx+=4; //+=6 pero se pierden algunas lineas
+            anchoX--;
+            alturaX-=8;
+        }
     }
 
-    // for (double x = 0; x <= 1; x = x + 0.01){
-    //     pVector.push_back(punto(x*pAnchura, y1*pAltura));
-    //     pVector.push_back(punto(x*pAnchura, y2*pAltura));
-    //     pVector.push_back(punto(x*pAnchura, y3*pAltura));
-    //     pVector.push_back(punto(x*pAnchura, y4*pAltura));
+    // int pntx=10;
+    // int pnty=80;
+    // int ancho=1;
+    // int altura=6;
 
-    //     if (x < 0.25 || (x >= 0.5 && x < 0.75)){
-    //         y1 = y1 - 0.01;
-    //         y2 = y2 + 0.01;
-    //         y3 = y3 - 0.01;
-    //         y4 = y4 + 0.01;
-    //     } else{
-    //         y1 = y1 + 0.01;
-    //         y2 = y2 - 0.01;
-    //         y3 = y3 + 0.01;
-    //         y4 = y4 - 0.01;
-    //     }
-
-    //     if (y1 < 0.009){
-    //         y1 = 0;
-    //     }
+    // for(int x = 1; x < 30; x+=2){
+    //     pVector.push_back(arco(pntx,pnty,ancho,altura, pi/2, 3*pi/2));
+    //     pntx+=6;
+    //     ancho++;
+    //     altura+=8;
+        
+    // }
+    // pVector.push_back(arco(pntx-4,pnty,0,altura-8,pi/2, 3*pi/2));
+    
+    // altura-=8;
+    // pVector.push_back(arco(pntx-2,pnty,ancho,altura,-(pi/2), + (pi/2)));
+    // pVector.push_back(arco(pntx,pnty,ancho,altura,-(pi/2), +(pi/2)));
+    
+    // for(int x = 1; x < 30; x+=2){
+    //     pVector.push_back(arco(pntx,pnty,ancho,altura,-(pi/2), +(pi/2)));
+    //     pntx+=9; //+=6 pero se pierden algunas lineas
+    //     ancho--;
+    //     altura-=8;
+        
     // }
 }
 
