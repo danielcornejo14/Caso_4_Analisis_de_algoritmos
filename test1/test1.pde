@@ -1,6 +1,4 @@
 void setup(){
-  //String[] settings = loadStrings("../settings.txt");
-  //System.out.println(settings);
   
   size(500,500);
   background(255);
