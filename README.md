@@ -7,6 +7,7 @@ La funcion de este algoritmo es calcular coordenadas para el dibujo de lineas cu
 #### Analisis del algoritmo
 -->O(n)
 -->f(n) = 5040*n + 17
+'''c++
 int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
     double pi = 3.1415927; //-->1
 
@@ -110,7 +111,7 @@ int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
     }
     return size; //-->1
 }
-
+'''
 ## Instrucciones de ejecuccion
 
 * Correr el main.exe
