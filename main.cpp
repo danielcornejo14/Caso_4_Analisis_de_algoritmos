@@ -25,10 +25,12 @@ public:
 
 int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector);
 
+
+
 int main(){
 
     vector<arco> vectorFigura;
-    int size = crearImagen(500, 500, vectorFigura);
+    int size = crearImagen(1000, 1000, vectorFigura);
 
     ofstream settings ("settings.txt");
     if (settings.is_open())
@@ -51,6 +53,8 @@ int main(){
     return 0;
 }
 
+
+
 int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
     double pi = 3.1415927;
 
@@ -69,12 +73,14 @@ int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
 
     int currentYHorizontal=-57.5;
     
+    int largo = ((size - 57.5)/115) + 2;
 
-    int cantTotal = (size/115+2)* ((size/115+1)*2-1);
+    int cantTotal = largo*largo + (largo)*(largo);
+    cout << cantTotal << endl;
     
     for(int i = 0; i < cantTotal; i++){
 
-        if (cont > size){
+        if (cont >= size){
             contLineas++;
             if (contLineas%2 == 1){
                 cont = 0;
