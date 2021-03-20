@@ -25,35 +25,58 @@ public:
 };
 
 int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector);
-
+void crearArchivo(string name);
 
 
 int main(){
 
     //Se define un vector para almacenar todos los arcos y se llama a la función
     //PARA DEFINIR EL TAMAÑO DE LA IMAGEN SE CAMBIAN LOS PRIMEROS DOS PARÁMETROS DE LA FUNCIÓN
-    vector<arco> vectorFigura;
-    int size = crearImagen(230, 230, vectorFigura);
+    vector<arco> vectorFigura_1;
+    vector<arco> vectorFigura_2;
+    int prueba_1 = crearImagen(230, 230, vectorFigura_1);
+    int prueba_2 = crearImagen(500, 500, vectorFigura_2);
+
 
     //Se crea un archivo para guardar el tamaño de la imagen
-    ofstream settings ("settings.txt");
-    if (settings.is_open())
+    ofstream settings_1 ("settings/settings_prueba1.txt");
+    if (settings_1.is_open())
     {
-        settings <<  size;
-        settings.close();
+        settings_1 <<  prueba_1;
+        settings_1.close();
     }
     else cout << "Unable to open file";
 
+    ofstream settings_2 ("settings/settings_prueba2.txt");
+    if (settings_2.is_open())
+    {
+        settings_2 <<  prueba_2;
+        settings_2.close();
+    }
+    else cout << "Unable to open file";
+
+
     //Se crea un archivo con todos los arcos que se crearon
     //para poder abrir el archivo en processing 
-    ofstream myfile ("caso4.txt");
-    if (myfile.is_open())
+    ofstream file_prueba1 ("pruebas/caso4_prueba1.txt");
+    if (file_prueba1.is_open())
     {
-        for(auto pun : vectorFigura){
-            myfile <<  pun.x << ";" << pun.y << ";" << pun.ancho << ";" << pun.alto << ";"
+        for(auto pun : vectorFigura_1){
+            file_prueba1 <<  pun.x << ";" << pun.y << ";" << pun.ancho << ";" << pun.alto << ";"
             << pun.inicio << ";" << pun.final << "\n";
         }
-        myfile.close();
+        file_prueba1.close();
+    }
+    else cout << "Unable to open file";
+
+    ofstream file_prueba2 ("pruebas/caso4_prueba2.txt");
+    if (file_prueba2.is_open())
+    {
+        for(auto pun : vectorFigura_2){
+            file_prueba2 <<  pun.x << ";" << pun.y << ";" << pun.ancho << ";" << pun.alto << ";"
+            << pun.inicio << ";" << pun.final << "\n";
+        }
+        file_prueba2.close();
     }
     else cout << "Unable to open file";
 
