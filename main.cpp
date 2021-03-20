@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//Se define la clase arco que es usada para representar una linea curva
+//Se define la clase arco que es usada para representar una línea curva
 class arco{
 public:
     double x;
@@ -30,11 +30,12 @@ int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector);
 
 int main(){
 
-    //Se define un vector para almacenar todos los arcos y se llama a la funcion
+    //Se define un vector para almacenar todos los arcos y se llama a la función
+    //PARA DEFINIR EL TAMAÑO DE LA IMAGEN SE CAMBIAN LOS PRIMEROS DOS PARÁMETROS DE LA FUNCIÓN
     vector<arco> vectorFigura;
     int size = crearImagen(230, 230, vectorFigura);
 
-    //
+    //Se crea un archivo para guardar el tamaño de la imagen
     ofstream settings ("settings.txt");
     if (settings.is_open())
     {
@@ -73,7 +74,7 @@ int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
     }
 
 
-    //Se definen los puntos para crear las lineas
+    //Se definen los puntos para crear las líneas
     double pntx=-57.5;
     double pnty=00;
     double cont = -57.5;
@@ -101,7 +102,7 @@ int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
             currentYHorizontal += 57.5;
         }
 
-        //Se definen mas variables para crear las lineas
+        //Se definen mas variables para crear las líneas
         int yHorizontal=currentYHorizontal;
 
         int offsetX = 4;
@@ -112,7 +113,7 @@ int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
         int alturaY=17;
         
 
-        //Se crean las lineas verticales de la izquierda del cuadrado
+        //Se crean las líneas verticales de la izquierda del cuadrado
         for(int x = 1; x < 30; x+=2){
             pVector.push_back(arco(pntx,pnty,anchoX,alturaX,pi/2, 3*pi/2));
             pntx+=offsetX;
@@ -126,7 +127,7 @@ int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
         
         
         
-        //Se crean las lineas horizontales de arriba del cuadrado
+        //Se crean las líneas horizontales de arriba del cuadrado
         for(int x =1; x < 30; x+=2){
             pVector.push_back(arco(pntx,yHorizontal,anchoY,alturaY,-pi,0));
             yHorizontal+=4;
@@ -141,7 +142,7 @@ int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
         pVector.push_back(arco(pntx,yHorizontal,anchoY,0,-pi,0));
         
         
-        //Se crean las lineas horizontales de abajo del cuadrado
+        //Se crean las líneas horizontales de abajo del cuadrado
         for(int x =1; x < 30; x+=2){
             pVector.push_back(arco(pntx,yHorizontal,anchoY,alturaY,0,pi));
             yHorizontal+=4;
@@ -149,7 +150,7 @@ int crearImagen(int pAltura, int pAnchura, vector<arco> &pVector){
             alturaY--;
         }
         
-        //Se crean las lineas verticales de la derecha del cuadrado
+        //Se crean las líneas verticales de la derecha del cuadrado
         for(int x = 1; x < 30; x+=2){
             pVector.push_back(arco(pntx,pnty,anchoX,alturaX,-(pi/2), +(pi/2)));
             pntx+=offsetX;
